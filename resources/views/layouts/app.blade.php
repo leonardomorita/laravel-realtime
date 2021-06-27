@@ -30,11 +30,11 @@
             <!-- Page Content -->
             <main>
                 <div
-                    class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative invisible"
+                    class="px-4 py-3 rounded relative invisible"
                     role="alert"
                     id="notification"
                 >
-                    <span class="block sm:inline"></span>
+                    <span class="block sm:inline" id="message-notification"></span>
                 </div>
 
                 {{ $slot }}

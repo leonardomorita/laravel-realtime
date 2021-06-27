@@ -3802,6 +3802,21 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
+Echo.channel('notifications').listen('UserSessionChanged', function (e) {
+  var notificationElement = document.getElementById('notification');
+  var messageNotificationElement = document.getElementById('message-notification');
+  messageNotificationElement.innerText = e.message;
+  notificationElement.classList.remove('invisible');
+  notificationElement.classList.remove('bg-red-100 border border-red-400 text-red-700');
+  notificationElement.classList.remove('bg-green-100 border border-green-400 text-green-700');
+
+  if (e.type == 'success') {
+    notificationElement.classList.add('bg-green-100 border border-green-400 text-green-700');
+  } else {
+    notificationElement.classList.add('bg-red-100 border border-red-400 text-red-700');
+  }
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -3832,8 +3847,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__.default({
   broadcaster: 'pusher',
-  key: "72baba477f806f0d8926",
-  cluster: "us2",
+  key: "5fdb58ce41d9d9cf8d0e",
+  cluster: "mt1",
   forceTLS: true
 });
 
