@@ -2,7 +2,7 @@ require('./bootstrap');
 
 require('alpinejs');
 
-Echo.channel('notifications')
+Echo.private('notifications')
     .listen('UserSessionChanged', (e) => {
         const notificationElement = document.getElementById('notification');
         const messageNotificationElement = document.getElementById('message-notification');

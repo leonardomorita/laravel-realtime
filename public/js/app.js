@@ -3802,7 +3802,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
-Echo.channel('notifications').listen('UserSessionChanged', function (e) {
+Echo["private"]('notifications').listen('UserSessionChanged', function (e) {
   var notificationElement = document.getElementById('notification');
   var messageNotificationElement = document.getElementById('message-notification');
   messageNotificationElement.innerText = e.message;
