@@ -82,8 +82,12 @@
                     sortList(usersElement);
                 })
                 .listen('UserUpdated', (e) => {
+                    const usersElement = document.getElementById('users');
+
                     const element = document.getElementById(e.user.id);
                     element.innerText = e.user.name;
+
+                    sortList(usersElement);
                 })
                 .listen('UserDeleted', (e) => {
                     const element = document.getElementById(e.user.id);
