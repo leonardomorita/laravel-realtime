@@ -52,8 +52,6 @@
                                 class="overflow-auto pl-1"
                                 style="height: 45vh"
                             >
-                                <li>Test1</li>
-                                <li>Test2</li>
                             </ul>
                         </div>
                     </div>
@@ -63,6 +61,42 @@
     </div>
 
     <x-slot name="scripts">
+        <script>
+            function sortList(users) {
+                var i, switching, user, shouldSwitch;
+
+                switching = true;
+
+                /* Make a loop that will continue until
+                no switching has been done: */
+                while (switching) {
+                    switching = false;
+                    user = users.getElementsByTagName("li");
+
+                    // Loop through all list items:
+                    for (i = 0; i < (user.length - 1); i++) {
+                        shouldSwitch = false;
+                        /* Check if the next item should
+                        switch place with the current item: */
+                        if (user[i].innerHTML.toLowerCase() > user[i + 1].innerHTML.toLowerCase()) {
+                            /* If next item is alphabetically lower than current item,
+                            mark as a switch and break the loop: */
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+
+                    if (shouldSwitch) {
+                        /* If a switch has been marked, make the switch
+                        and mark the switch as done: */
+                        console.log(user[i].parentNode);
+                        user[i].parentNode.insertBefore(user[i + 1], user[i]);
+                        switching = true;
+                    }
+                }
+            }
+        </script>
+
         <script>
             const usersElement = document.getElementById('users');
 
@@ -75,6 +109,7 @@
                         element.innerText = user.name;
 
                         usersElement.appendChild(element);
+                        sortList(usersElement);
                     });
                 })
                 .joining((user) => {
@@ -83,10 +118,14 @@
                     element.innerText = user.name;
 
                     usersElement.appendChild(element);
+                    sortList(usersElement);
                 })
                 .leaving((user) => {
                     let userElement = document.getElementById(user.id);
                     userElement.parentNode.removeChild(userElement);
+                })
+                .listening((e) => {
+
                 });
         </script>
     </x-slot>
