@@ -64,7 +64,30 @@
 
     <x-slot name="scripts">
         <script>
+            const usersElement = document.getElementById('users');
 
+            /* Presence Channel */
+            Echo.join('chat')
+                .here((users) => {
+                    users.forEach((user, index) => {
+                        let element = document.createElement('li');
+                        element.setAttribute('id', user.id);
+                        element.innerText = user.name;
+
+                        usersElement.appendChild(element);
+                    });
+                })
+                .joining((user) => {
+                    let element = document.createElement('li');
+                    element.setAttribute('id', user.id);
+                    element.innerText = user.name;
+
+                    usersElement.appendChild(element);
+                })
+                .leaving((user) => {
+                    let userElement = document.getElementById(user.id);
+                    userElement.parentNode.removeChild(userElement);
+                });
         </script>
     </x-slot>
 </x-app-layout>
