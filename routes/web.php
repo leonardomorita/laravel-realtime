@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,5 @@ require __DIR__.'/auth.php';
 Route::view('/users', 'users.show-all')->name('users.show.all');
 
 Route::view('/game', 'game.show')->name('game.show');
+
+Route::get('/chat', [ChatController::class, 'showChat'])->name('show.chat');
