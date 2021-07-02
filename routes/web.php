@@ -24,3 +24,5 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::view('/users', 'users.show-all')->name('users.show.all');
+
+Route::view('/game', 'game.show')->name('game.show');
