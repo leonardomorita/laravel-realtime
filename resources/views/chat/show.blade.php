@@ -22,8 +22,6 @@
                                         class="overflow-auto"
                                         style="height: 45vh"
                                     >
-                                        <li>Test1: Hello</li>
-                                        <li>Test2: Hello!</li>
                                     </ul>
                                 </div>
                             </div>
@@ -103,6 +101,7 @@
 
         <script>
             const usersElement = document.getElementById('users');
+            const messagesElement = document.getElementById('messages');
 
             /* Presence Channel */
             Echo.join('chat')
@@ -128,6 +127,12 @@
                     let userElement = document.getElementById(user.id);
                     userElement.parentNode.removeChild(userElement);
                 })
+                .listen('MessageSent', (e) => {
+                    let element = document.createElement('li');
+                    element.innerText = `${e.user.name}: ${e.message}`;
+
+                    messagesElement.appendChild(element);
+                });
         </script>
 
         <script>
