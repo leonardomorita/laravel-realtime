@@ -31,4 +31,5 @@ Route::view('/game', 'game.show')->name('game.show');
 Route::prefix('chat')->name('chat.')->group(function () {
     Route::get('/', [ChatController::class, 'showChat'])->name('show');
     Route::post('message', [ChatController::class, 'messageReceived'])->name('message.received');
+    Route::post('/greet/{user}', [ChatController::class, 'greet'])->name('greet');
 });
