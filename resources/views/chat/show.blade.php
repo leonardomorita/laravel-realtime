@@ -30,13 +30,17 @@
 
                             <form action="" class="grid grid-cols-5">
                                 <div class="col-start-1 col-end-4">
-                                    <input type="text" id="message" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    <input
+                                        type="text"
+                                        id="message"
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                    >
                                 </div>
 
                                 <div class="col-start-5 col-end-6">
                                     <button
-                                        id="send"
                                         type="submit"
+                                        id="send"
                                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full focus:outline-none focus:shadow-outline"
                                     >
                                         Send
@@ -124,9 +128,21 @@
                     let userElement = document.getElementById(user.id);
                     userElement.parentNode.removeChild(userElement);
                 })
-                .listening((e) => {
+        </script>
 
+        <script>
+            const messageElement = document.getElementById('message');
+            const sendElement = document.getElementById('send');
+
+            sendElement.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                window.axios.post('/chat/message', {
+                    message: messageElement.value
                 });
+
+                messageElement.value = '';
+            });
         </script>
     </x-slot>
 </x-app-layout>

@@ -28,4 +28,7 @@ Route::view('/users', 'users.show-all')->name('users.show.all');
 
 Route::view('/game', 'game.show')->name('game.show');
 
-Route::get('/chat', [ChatController::class, 'showChat'])->name('show.chat');
+Route::prefix('chat')->name('chat.')->group(function () {
+    Route::get('/', [ChatController::class, 'showChat'])->name('show');
+    Route::post('message', [ChatController::class, 'messageReceived'])->name('message.received');
+});
